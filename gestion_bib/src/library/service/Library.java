@@ -2,7 +2,9 @@ package library.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import library.model.*;
+import library.model.Lendable;
+// L'import de "library.model.*" n'est plus nécessaire,
+// on ne dépend que de l'interface Lendable.
 
 public class Library {
     private List<Lendable> items;
@@ -19,23 +21,30 @@ public class Library {
         items.remove(item);
     }
 
-    // Méthode volontairement incorrecte pour TP SonarQube
+    /**
+     * Renvoie les items qui ne sont pas actuellement empruntés.
+     * Cette méthode utilise la méthode isBorrowed() de l'interface.
+     */
     public List<Lendable> getAvailableItems() {
         List<Lendable> availableItems = new ArrayList<>();
         for (Lendable item : items) {
-            availableItems.add(item); // ne tient pas compte de l'état borrowed
+            if (!item.isBorrowed()) {
+                availableItems.add(item);
+            }
         }
         return availableItems;
     }
 
+    /**
+     * Affiche les détails de tous les items.
+     * N'utilise plus "instanceof" et ne dépend plus de la classe Book.
+     * Le Couplage (CBO) est réduit.
+     */
     public void listAllItems() {
+        System.out.println("--- All Items in Library ---");
         for (Lendable item : items) {
-            if (item instanceof Book) {
-                Book b = (Book) item;
-                System.out.println(b.getTitle() + " by " + b.getAuthor());
-            } else {
-                System.out.println("Unknown item type");
-            }
+            // Appelle la méthode getDetails() définie dans l'interface
+            System.out.println("- " + item.getDetails());
         }
     }
 }

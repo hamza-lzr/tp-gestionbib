@@ -1,7 +1,4 @@
 package library.model;
-//Comet 1
-
-
 
 public class Book implements Lendable {
     private String title;
@@ -32,20 +29,19 @@ public class Book implements Lendable {
         }
     }
 
+    @Override
+    public String getDetails() {
+        return "'" + title + "' by " + author;
+    }
+
     public String getTitle() { return title; }
     public String getAuthor() { return author; }
+
+    @Override
     public boolean isBorrowed() { return borrowed; }
 
-    // Méthode volontairement complexe pour TP SonarQube
-    public void complexMethodExample(int n) {
-        for (int i = 0; i < n; i++) {
-            if (i % 2 == 0) {
-                System.out.println(i + " is even");
-            } else if (i % 3 == 0) {
-                System.out.println(i + " divisible by 3");
-            } else {
-                System.out.println(i + " something else");
-            }
-        }
-    }
+    // L'ancienne méthode "complexMethodExample" a été extraite
+    // vers une classe "DemoUtils" car elle n'était pas
+    // liée aux responsabilités de la classe Book (SRP).
+    // Cela réduit WMC, RFC et augmente LCOM.
 }

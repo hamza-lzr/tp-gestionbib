@@ -2,6 +2,7 @@ package library.app;
 
 import library.model.*;
 import library.service.*;
+import library.utils.DemoUtils; // Import de la nouvelle classe utilitaire
 
 public class LibraryApp {
     public static void main(String[] args) {
@@ -15,10 +16,9 @@ public class LibraryApp {
         library.addItem(book2);
         library.addItem(book3);
 
-        System.out.println("List of Books in the Library:");
         library.listAllItems();
 
-        // Méthode pour TP SonarQube (complexité)
-        book1.complexMethodExample(10);
+        // Appel à la méthode statique extraite
+        DemoUtils.complexMethodExample(10);
     }
 }

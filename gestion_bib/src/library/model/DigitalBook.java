@@ -11,4 +11,10 @@ public class DigitalBook extends Book {
     public int getFileSizeMB() {
         return fileSizeMB;
     }
+
+    @Override
+    public String getDetails() {
+        // Appelle la méthode de la classe mère et ajoute ses propres infos
+        return super.getDetails() + " [Digital, " + fileSizeMB + "MB]";
+    }
 }
